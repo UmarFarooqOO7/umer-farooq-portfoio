@@ -1,0 +1,40 @@
+---
+title: "Lessons from Working with 30 Years of Legacy Code"
+publishedAt: "2025-06-01"
+summary: "What joining a codebase with 2M+ lines of PHP written across three decades teaches you about software, decisions, and humility."
+tag: "Engineering"
+---
+
+The first time I opened the Accrisoft codebase, I stared at a PHP file with a comment dated 1998. The function below it was still running in production.
+
+Working with a 30-year-old enterprise platform — 2M+ lines of code, 100+ modules, clients who depend on it every day — is one of the most educational experiences a developer can have. Here's what it taught me.
+
+## Every "Bad" Decision Made Sense Once
+
+It's easy to look at old code and think "who wrote this?" The answer is usually: someone smart, under pressure, with the tools and context they had at the time. PHP in 1998 didn't have namespaces, Composer, or half the language features we take for granted now.
+
+Legacy code isn't bad code. It's code that survived. That survival is actually evidence it worked. Before changing anything, I try to understand *why* it was written this way — because sometimes the weirdness is load-bearing.
+
+## Read Before You Refactor
+
+The most dangerous move in legacy work is refactoring code you don't fully understand. I've seen confident rewrites break production in ways nobody predicted because a subtle business rule lived in a convoluted if-statement that looked like a bug.
+
+My rule: I won't touch code I haven't read. And I won't consider myself done reading until I can explain what the code does and *why* it does it.
+
+## Tests Are Your Safety Net — Build Them First
+
+When we started consolidating 100+ modules down to 15, the first thing I pushed for was test coverage on the existing behavior before touching anything. Not test coverage of what the code *should* do — test coverage of what it *actually does*, even the parts that seem wrong.
+
+Those tests are what let you refactor with confidence. Without them, every change is a gamble.
+
+## Shrinking the Codebase Is Hard Work
+
+Deleting code is satisfying. Getting there isn't. Our consolidation effort — cutting the codebase by 65% — required deeply understanding what each of those 100+ modules actually did, which ones overlapped, which ones could be merged, and which ones touched things nobody expected.
+
+The 2X performance improvement we achieved wasn't magic. It came from eliminating redundant code paths, reducing duplicated database queries, and removing abstractions that had outlived their purpose.
+
+## Humility Is a Technical Skill
+
+Working in a codebase older than some of my colleagues teaches you that your clever solution today is tomorrow's legacy code. Write code that your future self — or someone who's never met you — can understand and change safely.
+
+That means clear naming, focused functions, honest comments where they add context, and tests that document behavior. Not for style points. Because production systems outlive their authors.

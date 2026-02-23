@@ -1,0 +1,38 @@
+---
+title: "Scaling Laravel Applications to 10M+ Data Rows"
+publishedAt: "2023-08-01"
+summary: "Practical lessons from building and scaling a Laravel application from zero to tens of millions of database rows without grinding to a halt."
+tag: "Engineering"
+---
+
+When I started building the internal management system at IT Pro Miami, the initial schema felt fine. A few tables, some relationships, standard Laravel stuff. Then the data grew. And kept growing. By the time we crossed 10 million rows, the decisions made in week one were either paying off or coming back to haunt us.
+
+Here's what I learned the hard way.
+
+## Index Everything You Query On
+
+This sounds obvious. It isn't always applied. Every column that appears in a `WHERE`, `ORDER BY`, or `JOIN` condition needs an index — especially on large tables. In Laravel, that means being intentional in your migrations rather than adding indexes as an afterthought.
+
+Composite indexes matter too. A query filtering by `user_id` and `status` benefits from a composite index on `(user_id, status)`, not just separate single-column indexes.
+
+## Avoid N+1 Queries Aggressively
+
+Eloquent makes it easy to accidentally fire hundreds of queries in a loop. `eager loading` with `with()` is non-negotiable at scale. I made it a habit to check the query log during development and set up Telescope in staging to catch N+1s before they hit production.
+
+## Chunk Large Operations
+
+Any operation that touches a significant portion of the dataset — exports, bulk updates, report generation — should never try to load everything into memory at once. Laravel's `chunk()` and `cursor()` methods exist for exactly this reason. I also moved heavy operations to queued jobs so they don't block the request lifecycle.
+
+## Paginate, Always
+
+Returning unbounded result sets is a fast way to kill performance. Every list endpoint in the system uses cursor-based or offset pagination. For the largest tables, cursor pagination is meaningfully faster because it doesn't require a `COUNT(*)` on the full dataset.
+
+## Cache What You Can
+
+Not every query needs to hit the database on every request. Reference data, aggregated counts, and frequently-read configuration all benefit from caching. I used Laravel's cache layer with a Redis driver and tagged caches so I could invalidate specific groups of cached data when underlying records changed.
+
+## Database Design Decisions Are Hard to Undo
+
+The most important lesson: schema decisions made early are expensive to reverse later. Polymorphic relationships that seemed convenient at a small scale became a query optimization nightmare at 10M rows. Spend time on the schema before you write application code.
+
+At scale, the database is almost always the bottleneck. Understanding MySQL (or PostgreSQL) at a deeper level than just "write queries and hope" is one of the highest-leverage skills a Laravel developer can build.

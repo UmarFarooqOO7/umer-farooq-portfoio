@@ -1,0 +1,38 @@
+---
+title: "AI-Assisted Development: My Workflow with Cursor and Claude Code"
+publishedAt: "2025-05-01"
+summary: "How I integrated AI coding tools into my daily engineering workflow and what actually changed about the way I write and review code."
+tag: "Engineering"
+---
+
+A couple of years ago, AI coding assistants felt like novelty demos. Today they're a core part of how I work. After using Cursor and Claude Code daily on production codebases — including a 2M+ line legacy PHP platform — here's an honest look at what changed and what didn't.
+
+## What I Actually Use Them For
+
+The biggest wins aren't autocomplete. They're:
+
+- **Navigating unfamiliar codebases.** When I joined Accrisoft and faced millions of lines of code written across three decades, AI tools let me ask questions like "what does this module do?" and get useful context in seconds rather than hours of reading.
+- **Splitting tightly coupled code.** Decomposing a 100+ module monolith into focused units requires understanding blast radius before touching anything. Having an AI reason through dependencies alongside me dramatically accelerated that process.
+- **Writing tests for legacy code.** Generating a test scaffold for a function I didn't write is tedious. AI handles the boilerplate so I can focus on the meaningful assertions.
+- **Code review support.** Before submitting a PR, I'll often ask Claude to review my own diff for edge cases I might have missed.
+
+## What It Doesn't Replace
+
+AI tools don't replace understanding. The times I've gotten burned were when I trusted generated code without reading it carefully. The tools are confident even when they're wrong — especially around:
+
+- Complex database transaction logic
+- Security-sensitive code paths
+- Business rules that exist only in someone's head (or a comment from 2003)
+
+You still need to understand the domain deeply. AI amplifies your existing knowledge; it doesn't substitute for it.
+
+## The Workflow That Works for Me
+
+1. **Understand first, generate second.** I read enough to understand what I need before prompting. A vague prompt gets a vague answer.
+2. **Treat output as a draft, not a solution.** I read every line of generated code before it goes into a PR.
+3. **Use it for the boring parts.** Boilerplate, repetitive transformations, test scaffolding — AI is excellent here and frees up mental energy for harder problems.
+4. **Iterate with context.** The longer the conversation stays focused on one problem, the better the suggestions get.
+
+## Where This Is Going
+
+I think the developers who thrive in the next few years will be the ones who learn to pair their domain expertise with these tools effectively — not the ones who either ignore them or over-rely on them. The craft is still in the thinking, the architecture, and the judgment calls. The AI just helps you execute faster.

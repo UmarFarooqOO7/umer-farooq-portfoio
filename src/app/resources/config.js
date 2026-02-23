@@ -6,6 +6,8 @@ const routes = {
   "/work": true,
   "/blog": true,
   "/gallery": true,
+  "/money_migo/account_delete": true,
+  "/money_migo/privacy_policy": true,
 };
 
 // Enable password protection on selected routes

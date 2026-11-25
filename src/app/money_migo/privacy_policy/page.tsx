@@ -1,8 +1,8 @@
 import { Column, Heading, Text } from "@/once-ui/components";
 
 export const metadata = {
-  title: "Privacy Policy – Money Migo",
-  description: "Privacy policy for the Money Migo mobile application.",
+  title: "Privacy Policy – Expense Tracker & Budget Sync (Money Migo)",
+  description: "Privacy policy for the Expense Tracker & Budget Sync (formerly Money Migo) mobile application by UFD Studio.",
 };
 
 export default function PrivacyPolicy() {
@@ -12,8 +12,8 @@ export default function PrivacyPolicy() {
       <Text variant="body-default-s" onBackground="neutral-weak">Effective date: 2025-12-10</Text>
 
       <Text variant="body-default-m">
-        This privacy policy is applicable to the Money Migo app (hereinafter referred to as "Application") for mobile
-        devices, which was developed by Umar Farooq (hereinafter referred to as "Service Provider") as an Ad Supported
+        This privacy policy is applicable to the Expense Tracker &amp; Budget Sync app, formerly Money Migo (package com.dhump.expense_manager) (hereinafter referred to as "Application") for mobile
+        devices, which was developed by UFD Studio (Umar Farooq) (hereinafter referred to as "Service Provider") as an Ad Supported
         service. This service is provided "AS IS".
       </Text>
 

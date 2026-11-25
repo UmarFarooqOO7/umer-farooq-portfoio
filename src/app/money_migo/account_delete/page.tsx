@@ -2,9 +2,9 @@ import { Column, Flex, Heading, Text, Icon, Button } from "@/once-ui/components"
 import { baseURL } from "@/app/resources";
 
 export async function generateMetadata() {
-  const title = "Request Account Deletion – Money Migo";
+  const title = "Request Account Deletion – Expense Tracker & Budget Sync (Money Migo)";
   const description =
-    "Learn how to request the deletion of your Money Migo account and all associated data.";
+    "Learn how to request the deletion of your Expense Tracker & Budget Sync (formerly Money Migo) account and all associated data. An app by UFD Studio.";
   const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
   return {
@@ -28,7 +28,7 @@ export async function generateMetadata() {
 
 export default function AccountDelete() {
   const email = "umarfarooq12650@gmail.com";
-  const subject = "Delete my Money Migo account";
+  const subject = "Delete my Expense Tracker & Budget Sync account";
 
   return (
     <Column maxWidth="s" gap="xl" paddingY="xl" horizontal="center">
@@ -37,11 +37,14 @@ export default function AccountDelete() {
       <Column gap="m" fillWidth>
         <Heading variant="display-strong-l">Request Account Deletion</Heading>
         <Text variant="body-default-l" onBackground="neutral-weak">
-          Money Migo
+          Expense Tracker &amp; Budget Sync (formerly Money Migo) · by UFD Studio
+        </Text>
+        <Text variant="body-default-s" onBackground="neutral-weak">
+          Android app package: com.dhump.expense_manager
         </Text>
         <Text variant="body-default-m" onBackground="neutral-weak">
-          If you want to delete your Money Migo account and all associated data, please
-          follow the steps below.
+          If you want to delete your Expense Tracker &amp; Budget Sync (Money Migo) account and all
+          associated data, please follow the steps below.
         </Text>
       </Column>
 
